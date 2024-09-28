@@ -13,7 +13,7 @@ export default function useBGColor() {
     : config.tokens.colors.secondary0;
   const borderColor = !isDark
     ? config.tokens.colors.borderDark100
-    : config.tokens.colors.borderDark900;
+    : config.tokens.colors.borderDark800;
 
-  return { bgColor, textColor, borderColor };
+  return { bgColor, textColor, borderColor, isDark };
 }

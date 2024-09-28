@@ -8,9 +8,9 @@ import {
   Text,
 } from "@gluestack-ui/themed";
 
-type Props = {};
+type Props = { onStartChatPress: () => void };
 
-export default function InitializeChatCard({}: Props) {
+export default function InitializeChatCard({ onStartChatPress }: Props) {
   const { borderColor } = useBGColor();
   return (
     <Card
@@ -51,7 +51,7 @@ export default function InitializeChatCard({}: Props) {
         agree to have your personal data processed as described in our Privacy
         Policy
       </Text>
-      <Button py="$2" px="$4">
+      <Button onPress={onStartChatPress} py="$2" px="$4">
         <ButtonText size="sm">Start Chat</ButtonText>
       </Button>
     </Card>
