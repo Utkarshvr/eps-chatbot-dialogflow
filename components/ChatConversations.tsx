@@ -4,11 +4,12 @@ import {
   getConvPermission,
 } from "@/helpers/store-conversations";
 import useBGColor from "@/hooks/useBGColor";
-import { Box, Center, Text } from "@gluestack-ui/themed";
+import { Box, Center, ScrollView, Text } from "@gluestack-ui/themed";
 import { useEffect, useState } from "react";
 import InitializeChatCard from "./InitializeChatCard";
 import { ActivityIndicator, Dimensions } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import ChatMsg from "./ChatMsg";
 
 type Props = {};
 
@@ -76,8 +77,14 @@ export default function ChatConversations({}: Props) {
     );
 
   return (
-    <Box bgColor={bgColor} flex={1}>
-      <Text>hello</Text>
-    </Box>
+    <ScrollView bgColor={bgColor} flex={1} p={"$4"}>
+      <ChatMsg
+        conversation={{
+          queryText: `Hello`,
+          time: "Sun Sep 29 2024 19:46:07 GMT+0530 (India Standard Time)",
+          botResponse: "Hello! How can I help you?",
+        }}
+      />
+    </ScrollView>
   );
 }
