@@ -12,7 +12,7 @@ export default function ChatMsg({ conversation }: Props) {
       <Box
         p={"$2"}
         rounded={"$3xl"}
-        bgColor={isDark ? "$backgroundDark900" : "$backgroundLight200"}
+        bgColor={isDark ? "$backgroundDark900" : "$backgroundLight100"}
         style={{ alignSelf: "flex-end", maxWidth: 260 }}
       >
         <Text>{conversation.queryText}</Text>
