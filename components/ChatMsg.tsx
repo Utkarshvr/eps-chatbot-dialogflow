@@ -15,7 +15,7 @@ export default function ChatMsg({ conversation }: Props) {
         bgColor={isDark ? "$backgroundDark900" : "$backgroundLight100"}
         style={{ alignSelf: "flex-end", maxWidth: 260 }}
       >
-        <Text>{conversation.queryText}</Text>
+        <Text size="sm">{conversation.queryText}</Text>
       </Box>
 
       <Box flexDirection="row" gap={"$2"} alignItems="flex-start">
@@ -27,13 +27,17 @@ export default function ChatMsg({ conversation }: Props) {
             alt="Icon"
           />
         </Box>
+        {conversation.isloading && <Text>{"Loading..."}</Text>}
         <Box>
-          <Text>{conversation.botResponse}</Text>
+          <Text size="sm">{conversation.botResponse}</Text>
         </Box>
       </Box>
 
       <Text size="xs" color={isDark ? "$textLight400" : "$textLight600"}>
-        {conversation.time && new Date(conversation.time).toDateString()}
+        {conversation.time &&
+          new Date(conversation.time).toLocaleDateString() +
+            " " +
+            new Date(conversation.time).toLocaleTimeString()}
       </Text>
     </Box>
   );

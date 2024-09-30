@@ -4,12 +4,26 @@ import {
   getConvPermission,
 } from "@/helpers/store-conversations";
 import useBGColor from "@/hooks/useBGColor";
-import { Box, Center, ScrollView, Text } from "@gluestack-ui/themed";
-import { useEffect, useState } from "react";
+import {
+  Box,
+  Center,
+  Image,
+  ScrollView,
+  Text,
+  View,
+} from "@gluestack-ui/themed";
+import { useRef } from "react";
 import InitializeChatCard from "./InitializeChatCard";
-import { ActivityIndicator, Dimensions } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import {
+  ActivityIndicator,
+  Dimensions,
+  ScrollView as ScrollViewNative,
+} from "react-native";
 import ChatMsg from "./ChatMsg";
+import {
+  useConversation,
+  useConversationAPI,
+} from "@/context/ConversationContext";
 
 type Props = {};
 
@@ -18,33 +32,10 @@ const screenDimensions = Dimensions.get("window");
 export default function ChatConversations({}: Props) {
   const { bgColor } = useBGColor();
 
-  const [conversations, setConversations] = useState([]);
-  const [convPermission, setConvPermission] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const { convPermission, conversations, isLoading } = useConversation();
+  const { onStartChatPress } = useConversationAPI();
 
-  useEffect(() => {
-    getConversations()
-      .then((conv) => {
-        setConversations(conv);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    getConvPermission()
-      .then((conv) => {
-        setConvPermission(conv || "");
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => setIsLoading(false));
-  }, []);
-
-  const onStartChatPress = () => {
-    allowPermission();
-    setConvPermission("allowed");
-  };
+  const scrollViewRef = useRef<ScrollViewNative | null>();
 
   if (isLoading)
     return (
@@ -76,15 +67,54 @@ export default function ChatConversations({}: Props) {
       </Center>
     );
 
+  if (conversations.length === 0)
+    return (
+      <View
+        bgColor={bgColor}
+        flex={1}
+        p={"$4"}
+        height={"$full"}
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Box alignItems="center" justifyContent="center">
+          <Image
+            source={require("@/assets/icons/chatbot.png")}
+            width={72}
+            height={72}
+            alt="Icon"
+          />
+          <Text size="sm" color="$textLight400">
+            Start your first conversation with EPS Chatbot!
+          </Text>
+        </Box>
+      </View>
+    );
+
   return (
-    <ScrollView bgColor={bgColor} flex={1} p={"$4"}>
-      <ChatMsg
+    <ScrollView
+      bgColor={bgColor}
+      flex={1}
+      px={"$4"}
+      contentContainerStyle={{
+        flexGrow: 1,
+      }}
+      ref={scrollViewRef}
+      onContentSizeChange={() =>
+        scrollViewRef.current &&
+        scrollViewRef.current.scrollToEnd({ animated: true })
+      }
+    >
+      {conversations.map((conv) => (
+        <ChatMsg key={conv.uuid} conversation={conv} />
+      ))}
+      {/* <ChatMsg
         conversation={{
           queryText: `Hello`,
           time: "Sun Sep 29 2024 19:46:07 GMT+0530 (India Standard Time)",
           botResponse: "Hello! How can I help you?",
         }}
-      />
+      /> */}
     </ScrollView>
   );
 }

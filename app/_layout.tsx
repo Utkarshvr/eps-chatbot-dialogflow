@@ -26,6 +26,9 @@ import {
   Poppins_900Black,
   Poppins_900Black_Italic,
 } from "@expo-google-fonts/poppins";
+import ConversationProvider from "@/providers/ConversationProvider";
+import { Dialogflow_V2 } from "react-native-dialogflow";
+import dialogflowConfig from "@/eps-chatbot-service-key";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -52,18 +55,27 @@ export default function RootLayout() {
     p9bi: Poppins_900Black_Italic,
   });
 
+  Dialogflow_V2.setConfiguration(
+    dialogflowConfig.client_email,
+    dialogflowConfig.private_key || "",
+    Dialogflow_V2.LANG_ENGLISH_US,
+    dialogflowConfig.project_id
+  );
+
   if (!fontsLoaded && !fontError) {
     return null;
   }
 
   return (
-    <GluestackUIProvider>
-      <App>
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="index" />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-      </App>
-    </GluestackUIProvider>
+    <ConversationProvider>
+      <GluestackUIProvider>
+        <App>
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="index" />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+        </App>
+      </GluestackUIProvider>
+    </ConversationProvider>
   );
 }

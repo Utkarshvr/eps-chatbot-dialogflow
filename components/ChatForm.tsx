@@ -1,27 +1,63 @@
+import { useConversationAPI } from "@/context/ConversationContext";
 import useBGColor from "@/hooks/useBGColor";
 import { Ionicons } from "@expo/vector-icons";
 import { config } from "@gluestack-ui/config";
-import {
-  Box,
-  Button,
-  Image,
-  Input,
-  InputField,
-  Text,
-  Textarea,
-  TextareaInput,
-} from "@gluestack-ui/themed";
+import { Box } from "@gluestack-ui/themed";
 import React, { useState } from "react";
 import { TextInput, TouchableHighlight } from "react-native";
+
+import { Dialogflow_V2 } from "react-native-dialogflow"; // For Dialogflow v2 (recommended)
+import dialogflowConfig from "../eps-chatbot-service-key"; // Path to your Dialogflow JSON key
+import { ConversationType } from "@/types/types";
+import { storeConversation } from "@/helpers/store-conversations";
 
 type Props = {};
 
 export default function ChatForm({}: Props) {
-  const { borderColor, isDark } = useBGColor();
-
-  const sendMsg = () => {};
+  const { isDark } = useBGColor();
 
   const [text, setText] = useState("");
+
+  const { addConversation, updateConversation } = useConversationAPI();
+
+  // Function to send a message to Dialogflow
+  const sendMessageToDialogflow = (conv: ConversationType) => {
+    if (!conv.queryText.trim()) return;
+
+    // Send user message to Dialogflow agent
+    Dialogflow_V2.requestQuery(
+      conv.queryText,
+      (response: any) => {
+        console.log(response);
+        const botReply = response.queryResult.fulfillmentText;
+        console.log(botReply);
+        // Add the bot's response to the chat
+        const updatedConv = {
+          ...conv,
+          botResponse: botReply,
+          isloading: false,
+        };
+        updateConversation(updatedConv);
+        storeConversation(updatedConv);
+      },
+      (error) => {
+        console.error("Dialogflow Error:", error);
+      }
+    );
+  };
+
+  const sendMsg = () => {
+    const newConv = {
+      uuid: Math.random().toString(),
+      queryText: text,
+      botResponse: null,
+      time: new Date().toString(),
+      isloading: true,
+    };
+    addConversation(newConv);
+    setText("");
+    sendMessageToDialogflow(newConv);
+  };
 
   return (
     <Box
@@ -87,17 +123,6 @@ export default function ChatForm({}: Props) {
           }
         />
       </TouchableHighlight>
-
-      {/* 
-      <Textarea
-        size="md"
-        isReadOnly={false}
-        isInvalid={false}
-        isDisabled={false}
-        w="$64"
-      >
-        <TextareaInput placeholder="Your text goes here..." />
-      </Textarea> */}
     </Box>
   );
 }
