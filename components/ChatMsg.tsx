@@ -1,7 +1,7 @@
-import React from "react";
+import Loader from "react-native-three-dots-loader";
+
 import useBGColor from "@/hooks/useBGColor";
 import { ConversationType } from "@/types/types";
-import { LinkPreview } from "@flyerhq/react-native-link-preview";
 import { Box, Image, Text, Link } from "@gluestack-ui/themed";
 
 type Props = { conversation: ConversationType };
@@ -53,7 +53,8 @@ export default function ChatMsg({ conversation }: Props) {
             alt="Icon"
           />
         </Box>
-        {conversation.isloading && <Text>{"Loading..."}</Text>}
+        {/* {conversation.isloading && <Text>{"Loading..."}</Text>} */}
+        {conversation.isloading && <Loader />}
         <Box>
           {/* Show text without the link */}
           <Text size="sm">{textWithoutLink}</Text>
