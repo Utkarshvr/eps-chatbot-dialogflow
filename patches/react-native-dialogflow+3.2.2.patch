@@ -1,16 +1,7 @@
 diff --git a/node_modules/react-native-dialogflow/android/build.gradle b/node_modules/react-native-dialogflow/android/build.gradle
-index d519e3d..c066c99 100644
+index d519e3d..ff06b1d 100644
 --- a/node_modules/react-native-dialogflow/android/build.gradle
 +++ b/node_modules/react-native-dialogflow/android/build.gradle
-@@ -22,7 +22,7 @@ buildscript {
- 
- 
- android {
--    compileSdkVersion 25
-+    implementationSdkVersion 25
-     buildToolsVersion "25.0.3"
- 
-     defaultConfig {
 @@ -55,13 +55,13 @@ android {
  
  
