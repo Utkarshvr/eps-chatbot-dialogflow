@@ -1,0 +1,34 @@
+diff --git a/node_modules/react-native-dialogflow/android/build.gradle b/node_modules/react-native-dialogflow/android/build.gradle
+index d519e3d..c066c99 100644
+--- a/node_modules/react-native-dialogflow/android/build.gradle
++++ b/node_modules/react-native-dialogflow/android/build.gradle
+@@ -22,7 +22,7 @@ buildscript {
+ 
+ 
+ android {
+-    compileSdkVersion 25
++    implementationSdkVersion 25
+     buildToolsVersion "25.0.3"
+ 
+     defaultConfig {
+@@ -55,13 +55,13 @@ android {
+ 
+ 
+ dependencies {
+-    compile "com.facebook.react:react-native:+"
+-    compile fileTree(dir: 'libs', include: ['*.jar'])
+-    compile 'com.android.support:appcompat-v7:23.2.1'
+-    compile 'ai.api:sdk:2.0.7@aar'
+-    compile 'com.google.code.gson:gson:2.3'
+-    compile 'commons-io:commons-io:2.4'
+-    compile('ai.api:libai:1.4.8') {
++    implementation 'com.facebook.react:react-native:+'
++    implementation fileTree(dir: 'libs', include: ['*.jar'])
++    implementation 'com.android.support:appcompat-v7:23.2.1'
++    implementation 'ai.api:sdk:2.0.7@aar'
++    implementation 'com.google.code.gson:gson:2.3'
++    implementation 'commons-io:commons-io:2.4'
++    implementation('ai.api:libai:1.4.8') {
+        exclude module: 'log4j-core'
+     }
+ }
