@@ -47,7 +47,6 @@
     "react-native-screens": "3.31.1",
     "react-native-svg": "15.2.0",
     "react-native-three-dots-loader": "^1.0.1",
-    "react-native-voice": "^0.3.0",
     "react-native-web": "~0.19.10",
     "rn-fetch-blob": "^0.12.0"
   },
