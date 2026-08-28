@@ -1,50 +1,200 @@
-# Welcome to your Expo app 👋
+# 🤖 EPS Chatbot
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+> An AI-powered chatbot built for my school to help students, parents, and visitors get quick answers to common queries.
 
-## Get started
+<p align="center">
+  <img src="https://res.cloudinary.com/di7b9ifgh/image/upload/v1727976687/EPS_Chatbot_7e67362c09.png" alt="EPS Chatbot" width="850"/>
+</p>
 
-1. Install dependencies
+<p align="center">
+  <a href="https://www.youtube.com/shorts/95GoLrjgOGY"
+     style="display:inline-block; padding:14px 30px; border-radius:14px; background:#111827; color:#ffffff; font-size:16px; font-weight:700; text-decoration:none; border:1px solid #374151;">
+    ▶&nbsp;&nbsp; Watch the Demo
+  </a>
+</p>
 
-   ```bash
-   npm install
-   ```
+---
 
-2. Start the app
+## 💡 What is EPS Chatbot?
 
-   ```bash
-    npx expo start
-   ```
+**EPS Chatbot** is a conversational AI assistant built for my school to make accessing information faster and easier.
 
-In the output, you'll find options to open the app in a
+Instead of manually searching through school resources or asking staff common questions, users can interact with the chatbot and get answers through a simple conversational interface.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+The project was built as a practical solution for a real-world environment rather than simply as a chatbot experiment.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## ✨ Features
 
-When you're ready, run:
+### 💬 Conversational Interface
 
-```bash
-npm run reset-project
+Interact with the chatbot naturally through a simple, mobile-friendly chat interface.
+
+### 🧠 AI-powered Responses
+
+Uses **Google Dialogflow** to understand user messages and determine the appropriate intent and response.
+
+### 🎯 Intent-based Understanding
+
+The chatbot can identify different types of queries and respond based on the user's intent rather than relying only on exact keyword matches.
+
+### 📱 Mobile Application
+
+Built as a cross-platform mobile application using **React Native + Expo**.
+
+### 🏫 Built for a Real School
+
+The chatbot was designed around actual school-related queries and information, making it a practical application of conversational AI.
+
+---
+
+## 🧠 How It Works
+
+At a high level, the application follows this flow:
+
+```text
+┌──────────────┐
+│     User     │
+└──────┬───────┘
+       │
+       ▼
+┌──────────────────┐
+│  React Native UI │
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────┐
+│    Dialogflow    │
+│ Intent Detection │
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────┐
+│ Response / Data  │
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────┐
+│   Chat Response  │
+└──────────────────┘
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Dialogflow handles the conversational understanding, while the mobile application provides the user-facing chat experience.
 
-## Learn more
+---
 
-To learn more about developing your project with Expo, look at the following resources:
+## 🛠️ Tech Stack
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+* **React Native**
+* **Expo**
+* **TypeScript**
+* **Google Dialogflow**
+* **JavaScript / Node.js ecosystem**
 
-## Join the community
+---
 
-Join our community of developers creating universal apps.
+## 🎥 Demo
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Watch the chatbot in action:
+
+<p align="center">
+  <a href="https://www.youtube.com/shorts/95GoLrjgOGY">
+    <img src="https://res.cloudinary.com/di7b9ifgh/image/upload/v1727976687/EPS_Chatbot_7e67362c09.png" alt="Watch EPS Chatbot Demo" width="700"/>
+  </a>
+</p>
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+Make sure you have:
+
+* Node.js installed
+* Expo CLI / Expo environment
+* A Google Dialogflow project
+* The required Dialogflow credentials
+
+### Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Utkarshvr/eps-chatbot-dialogflow.git
+cd eps-chatbot-dialogflow
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the Expo development server:
+
+```bash
+npx expo start
+```
+
+You can then run the application on an Android emulator, iOS simulator, or a compatible physical device.
+
+---
+
+## 🔐 Configuration
+
+The project requires Dialogflow credentials to communicate with the chatbot service.
+
+**Never commit your own service account credentials or private keys to GitHub.**
+
+Create your own Dialogflow project and configure the required credentials locally before running the application.
+
+---
+
+## 🌱 Open Source
+
+This project is **open source** and available for anyone interested in learning from, improving, or adapting the implementation.
+
+Feel free to:
+
+* ⭐ Star the repository
+* 🍴 Fork the project
+* 🐛 Open issues
+* 💡 Suggest improvements
+* 🔧 Submit pull requests
+
+If you build something interesting with it, I'd love to see it.
+
+---
+
+## 🎯 Why I Built It
+
+I wanted to explore how conversational AI could be applied to an actual environment rather than just building another generic chatbot demo.
+
+Building this for my school gave me the opportunity to work with:
+
+* Conversational AI
+* Intent recognition
+* Mobile application development
+* API/service integration
+* Real-world user requirements
+
+It was one of my early projects where **AI wasn't just the technology being experimented with — it was part of an actual product experience.**
+
+---
+
+## 👨‍💻 About
+
+Built by **Utkarsh Verma**.
+
+I'm a developer who enjoys turning ideas into real products and experimenting with technologies across **AI, web, and mobile development**.
+
+**Portfolio:** https://uvcodes.vercel.app
+**GitHub:** https://github.com/Utkarshvr
+
+---
+
+## 📄 License
+
+This project is open source. See the `LICENSE` file for details.
